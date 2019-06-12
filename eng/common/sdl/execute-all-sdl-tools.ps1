@@ -37,10 +37,14 @@ else{
   $RepoName = $Repository;
 }
 
+ Write-Host "Params: $GuardianPackageName $NugetPackageDirectory  $GuardianCliLocation"
+
 if ($GuardianPackageName) {
   $guardianCliLocation = Join-Path $NugetPackageDirectory (Join-Path $GuardianPackageName (Join-Path "tools" "guardian.cmd"))
+  Write-Host "Inside $GuardianPackageName $guardianCliLocation"
 } else {
   $guardianCliLocation = $GuardianCliLocation
+  Write-Host "Inside $GuardianCliLocation $guardianCliLocation"
 }
 
 $ValidPath = Test-Path $guardianCliLocation

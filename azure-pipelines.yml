@@ -162,7 +162,12 @@ jobs:
 - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
   - template: /eng/common/templates/job/execute-sdl.yml
     parameters:
+      GuardianPackageName: "Microsoft.Guardian.Cli.0.3.2"
+      NugetPackageDirectory: $(Build.SourcesDirectory)\.packages
+      Repository: $(Build.Repository.Name)
+      SourceDirectory: $(Build.SourcesDirectory)
       ArtifactsDirectory: $(Build.SourcesDirectory)
+      DncEngAccessToken: $(dn-bot-dotnet-build-rw-code-rw)
       SourceToolsList: "policheck, credscan"
       TsaInstanceURL: "https://devdiv.visualstudio.com/"
       TsaProjectName: "DEVDIV"

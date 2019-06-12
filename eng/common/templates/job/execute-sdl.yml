@@ -52,31 +52,21 @@ jobs:
       nugetConfigPath: $(Build.SourcesDirectory)\eng\common\sdl\NuGet.config
       externalFeedCredentials: GuardianConnect
       restoreDirectory: ${{ parameters.NugetPackageDirectory }}
-  - powershell: powershell $env:BUILD_SOURCESDIRECTORY\eng\common\sdl\execute-all-sdl-tools.ps1
-    displayName: Execute SDL
-    env:
-      GuardianPackageName: ${{ parameters.GuardianPackageName }}
-      NugetPackageDirectory: ${{ parameters.NugetPackageDirectory }}
-      GuardianCliLocation: ${{ parameters.GuardianCliLocation }}
-      Repository: ${{ parameters.Repository }}
-      BranchName:  ${{ parameters.BranchName }}
-      SourceDirectory: ${{ parameters.SourceDirectory }}
-      ArtifactsDirectory: ${{ parameters.ArtifactsDirectory }}
-      DncEngAccessToken: ${{ parameters.DncEngAccessToken }}
-      SourceToolsList: ${{ parameters.SourceToolsList }}
-      ArtifactToolsList: ${{ parameters.ArtifactToolsList }}
-      TsaPublish: ${{ parameters.TsaPublish }}
-      TsaBranchName: ${{ parameters.TsaBranchName }}
-      BuildNumber: ${{ parameters.BuildNumber }}
-      TsaInstanceURL: ${{ parameters.TsaInstanceURL }}
-      TsaProjectName: ${{ parameters.TsaProjectName }}
-      TsaNotificationEmail: ${{ parameters.TsaNotificationEmail }}
-      TsaCodebaseAdmin: ${{ parameters.TsaCodebaseAdmin }}
-      TsaBugAreaPath: ${{ parameters.TsaBugAreaPath }}
-      TsaIterationPath: ${{ parameters.TsaIterationPath }}
-      TsaRepositoryName: ${{ parameters.TsaRepositoryName }}
-      TsaCodebaseName: ${{ parameters.TsaCodebaseName }}
-      UpdateBaseline: ${{ parameters.UpdateBaseline }}
-      GuardianLoggerLevel: ${{ parameters.GuardianLoggerLevel }}
-      TsaOnboard: ${{ parameters.TsaOnboard }}
+  - powershell: eng/common/sdl/execute-all-sdl-tools.ps1
+      -GuardianPackageName ${{ parameters.GuardianPackageName }}
+      -NugetPackageDirectory ${{ parameters.NugetPackageDirectory }}
+      -Repository ${{ parameters.Repository }}
+      -SourceDirectory ${{ parameters.SourceDirectory }}
+      -ArtifactsDirectory ${{ parameters.ArtifactsDirectory }}
+      -DncEngAccessToken ${{ parameters.DncEngAccessToken }}
+      -SourceToolsList ${{ parameters.SourceToolsList }}
+      -TsaInstanceURL ${{ parameters.TsaInstanceURL }}
+      -TsaProjectName ${{ parameters.TsaProjectName }}
+      -TsaNotificationEmail ${{ parameters.TsaNotificationEmail }}
+      -TsaCodebaseAdmin ${{ parameters.TsaCodebaseAdmin }}
+      -TsaBugAreaPath ${{ parameters.TsaBugAreaPath }}
+      -TsaIterationPath ${{ parameters.TsaIterationPath }}
+      -TsaRepositoryName ${{ parameters.TsaRepositoryName }}
+      -TsaCodebaseName ${{ parameters.TsaCodebaseName }}
+      -TsaPublish ${{ parameters.TsaPublish }}
     continueOnError: ${{ parameters.continueOnError }}

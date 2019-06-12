@@ -32,12 +32,11 @@ jobs:
   displayName: Run SDL tool
   variables:
     - group: SDL_Eng_KeyVault
-    - _BuildConfig: Release
   steps:
   - checkout: self
     clean: true
   - powershell: eng\common\build.ps1
-      -configuration $(_BuildConfig)
+      -configuration Release
       -restore
       -prepareMachine
       -ci

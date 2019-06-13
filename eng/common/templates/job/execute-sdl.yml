@@ -7,8 +7,8 @@ parameters:
   SourceDirectory: $(Build.SourcesDirectory)                 # Required: the directory where source files are located
   ArtifactsDirectory: $(Build.SourcesDirectory)\artifacts    # Required: the directory where build artifacts are located
   DncEngAccessToken: $(dn-bot-dotnet-build-rw-code-rw)       # Required: access token for dnceng; should be provided via KeyVault
-  SourceToolsList:                                           # Optional: list of SDL tools to run on source code in the format @("xyz, abc,...")
-  ArtifactToolsList:                                         # Optional: list of SDL tools to run on built artifacts in the format @("xyz, abc,...")
+  SourceToolsList: []                                        # Optional: list of SDL tools to run on source code in the format @("xyz, abc,...")
+  ArtifactToolsList: []                                      # Optional: list of SDL tools to run on built artifacts in the format @("xyz, abc,...")
   TsaPublish: false                                          # Optional: true will publish results to TSA; only set to true after onboarding to TSA; TSA is the automated framework used to upload test results as bugs.
   TsaBranchName: $(Build.SourceBranch)                       # Optional: required for TSA publish; defaults to $(Build.SourceBranchName); TSA is the automated framework used to upload test results as bugs.
   BuildNumber: $(Build.BuildNumber)                          # Optional: required for TSA publish; defaults to $(Build.BuildNumber)

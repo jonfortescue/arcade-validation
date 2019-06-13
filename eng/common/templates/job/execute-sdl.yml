@@ -53,7 +53,7 @@ jobs:
       feedsToUse: config
       nugetConfigPath: $(Build.SourcesDirectory)\eng\common\sdl\NuGet.config
       externalFeedCredentials: GuardianConnect
-      restoreDirectory: ${{ parameters.NugetPackageDirectory }}
+      restoreDirectory: ${{ parameters.Guardian.NugetPackageDirectory }}
   - powershell: powershell $env:BUILD_SOURCESDIRECTORY\eng\common\sdl\execute-all-sdl-tools.ps1
     displayName: Execute SDL
     env:

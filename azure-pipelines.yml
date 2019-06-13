@@ -163,7 +163,7 @@ jobs:
   - template: /eng/common/templates/job/execute-sdl.yml
     parameters:
       ArtifactsDirectory: $(Build.SourcesDirectory)
-      SourceToolsList: @("policheck", "credscan")
+      SourceToolsList: ["policheck", "credscan"]
       TsaInstanceURL: "https://devdiv.visualstudio.com/"
       TsaProjectName: "DEVDIV"
       TsaNotificationEmail: "subal@microsoft.com"

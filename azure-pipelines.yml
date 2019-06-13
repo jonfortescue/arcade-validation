@@ -164,15 +164,15 @@ jobs:
     parameters:
       ArtifactsDirectory: $(Build.SourcesDirectory)
       SourceToolsList: "policheck,credscan"
-      TsaPublish: $True
-        InstanceURL: "https://devdiv.visualstudio.com/"
-        ProjectName: "DEVDIV"
-        NotificationEmail: "subal@microsoft.com"
-        CodebaseAdmin: "REDMOND\\subal"
-        BugAreaPath: "DevDiv\\NET\\NET Core "
-        IterationPath: "DevDiv"
-        RepositoryName: "Arcade"
-        CodebaseName: "Arcade"
+      - TsaPublish: $True
+          InstanceURL: "https://devdiv.visualstudio.com/"
+          ProjectName: "DEVDIV"
+          NotificationEmail: "subal@microsoft.com"
+          CodebaseAdmin: "REDMOND\\subal"
+          BugAreaPath: "DevDiv\\NET\\NET Core "
+          IterationPath: "DevDiv"
+          RepositoryName: "Arcade"
+          CodebaseName: "Arcade"
 
 
 - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'master')) }}:

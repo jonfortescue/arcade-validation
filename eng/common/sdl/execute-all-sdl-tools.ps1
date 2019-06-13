@@ -7,8 +7,8 @@ Param(
   [string] $SourceDirectory=$env:SourceDirectory,                # Required: the directory where source files are located
   [string] $ArtifactsDirectory=$env:ArtifactsDirectory,          # Required: the directory where build artifacts are located
   [string] $DncEngAccessToken=$env:DncEngAccessToken,            # Required: access token for dnceng; should be provided via KeyVault
-  [string[]] $SourceToolsList=$env:SourceToolsList,              # Optional: list of SDL tools to run on source code
-  [string[]] $ArtifactToolsList=$env:ArtifactToolsList,          # Optional: list of SDL tools to run on built artifacts
+  [string] $SourceToolsList=$env:SourceToolsList,                # Optional: list of SDL tools to run on source code
+  [string] $ArtifactToolsList=$env:ArtifactToolsList,            # Optional: list of SDL tools to run on built artifacts
   [bool] $TsaPublish=$False,                                     # Optional: true will publish results to TSA; only set to true after onboarding to TSA; TSA is the automated framework used to upload test results as bugs.
   [string] $TsaBranchName=$env:BUILD_SOURCEBRANCHNAME,           # Optional: required for TSA publish; defaults to $(Build.SourceBranchName); TSA is the automated framework used to upload test results as bugs.
   [string] $TsaRepositoryName=$env:TsaRepositoryName,            # Optional: TSA repository name; will be generated automatically if not submitted; TSA is the automated framework used to upload test results as bugs.
@@ -35,6 +35,14 @@ if (!($Repository.contains('/'))) {
 }
 else{
   $RepoName = $Repository;
+}
+
+if ($ArtifactToolsList) {
+  [string[]] $artifactToolList = $ArtifactToolsList.split(",");
+}
+
+if ($SourceToolsList) {
+  [string[]] $sourceToolsList = $SourceToolsList.split(",");
 }
 
  Write-Host "Params: $GuardianPackageName $NugetPackageDirectory  $GuardianCliLocation"
@@ -72,11 +80,11 @@ if ($TsaOnboard) {
   }
 }
 
-if ($ArtifactToolsList -and $ArtifactToolsList.Count -gt 0) {
-  & $(Join-Path $PSScriptRoot "run-sdl.ps1") -GuardianCliLocation $guardianCliLocation -WorkingDirectory $ArtifactsDirectory -TargetDirectory $ArtifactsDirectory -GdnFolder $gdnFolder -ToolsList $ArtifactToolsList -DncEngAccessToken $DncEngAccessToken -UpdateBaseline $UpdateBaseline -GuardianLoggerLevel $GuardianLoggerLevel
+if ($artifactToolsList -and $artifactToolsList.Count -gt 0) {
+  & $(Join-Path $PSScriptRoot "run-sdl.ps1") -GuardianCliLocation $guardianCliLocation -WorkingDirectory $ArtifactsDirectory -TargetDirectory $ArtifactsDirectory -GdnFolder $gdnFolder -ToolsList $artifactToolsList -DncEngAccessToken $DncEngAccessToken -UpdateBaseline $UpdateBaseline -GuardianLoggerLevel $GuardianLoggerLevel
 }
-if ($SourceToolsList -and $SourceToolsList.Count -gt 0) {
-  & $(Join-Path $PSScriptRoot "run-sdl.ps1") -GuardianCliLocation $guardianCliLocation -WorkingDirectory $ArtifactsDirectory -TargetDirectory $SourceDirectory -GdnFolder $gdnFolder -ToolsList $SourceToolsList -DncEngAccessToken $DncEngAccessToken -UpdateBaseline $UpdateBaseline -GuardianLoggerLevel $GuardianLoggerLevel
+if ($sourceToolsList -and $sourceToolsList.Count -gt 0) {
+  & $(Join-Path $PSScriptRoot "run-sdl.ps1") -GuardianCliLocation $guardianCliLocation -WorkingDirectory $ArtifactsDirectory -TargetDirectory $SourceDirectory -GdnFolder $gdnFolder -ToolsList $sourceToolsList -DncEngAccessToken $DncEngAccessToken -UpdateBaseline $UpdateBaseline -GuardianLoggerLevel $GuardianLoggerLevel
 }
 
 if ($UpdateBaseline) {

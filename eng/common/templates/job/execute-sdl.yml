@@ -11,7 +11,7 @@ parameters:
   SourceToolsList:                                             # Optional: list of SDL tools to run on source code in the format "xyz,abc,..."
   ArtifactToolsList:                                           # Optional: list of SDL tools to run on built artifacts in the format "xyz,abc,..."
   Tsa:
-    Publish: $False                                            # Optional: true will publish results to TSA; only set to true after onboarding to TSA; TSA is the automated framework used to upload test results as bugs.
+    Publish: false                                             # Optional: true will publish results to TSA; only set to true after onboarding to TSA; TSA is the automated framework used to upload test results as bugs.
     BranchName: $(Build.SourceBranch)                          # Optional: required for TSA publish; defaults to $(Build.SourceBranch); TSA is the automated framework used to upload test results as bugs.
     BuildNumber: $(Build.BuildNumber)                          # Optional: required for TSA publish; defaults to $(Build.BuildNumber)
     InstanceURL:                                               # Optional: only needed if TsaOnboard or TsaPublish is true; the instance-url registered with TSA; TSA is the automated framework used to upload test results as bugs.
@@ -22,8 +22,7 @@ parameters:
     IterationPath:                                             # Optional: only needed if TsaOnboard is true; the iteration path where TSA will file bugs in AzDO; TSA is the automated framework used to upload test results as bugs.
     RepositoryName:                                            # Optional: TSA repository name; will be generated automatically if not submitted; TSA is the automated framework used to upload test results as bugs.
     CodebaseName:                                              # Optional: only needed if TsaOnboard is true;  the name of the codebase registered with TSA; TSA is the automated framework used to upload test results as bugs.
-    Onboard: $False                                            # Optional: if true, will onboard the repository to TSA; should only be run once; TSA is the automated framework used to upload test results as bugs.
-  UpdateBaseline: $False                                       # Optional: if true, will update the baseline in the repository; should only be run after fixing any issues which need to be fixed
+  UpdateBaseline: false                                        # Optional: if true, will update the baseline in the repository; should only be run after fixing any issues which need to be fixed
   continueOnError: false                                       # optional -- determines whether to continue the build if the step errors; defaults to false
   dependsOn:                                                   # Optional: dependencies of the job
 
@@ -72,7 +71,6 @@ jobs:
       -TsaRepositoryName ${{ parameters.Tsa.RepositoryName }}
       -TsaCodebaseName ${{ parameters.Tsa.CodebaseName }}
       -TsaPublish ${{ parameters.Tsa.Publish }}
-      -TsaOnboard ${{ parameters.Tsa.Onboard }}
       -TsaBranchName ${{ parameters.Tsa.BranchName }}
       -TsaBuildNumber ${{ parameters.Tsa.BuildNumber }}
       -LoggerLevel ${{ parameters.Guardian.LoggerLevel }}

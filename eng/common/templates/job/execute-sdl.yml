@@ -23,6 +23,7 @@ parameters:
   UpdateBaseline: $False                                       # Optional: if true, will update the baseline in the repository; should only be run after fixing any issues which need to be fixed
   continueOnError: false                                       # optional -- determines whether to continue the build if the step errors; defaults to false
   dependsOn:                                                   # Optional: dependencies of the job
+  additionalParameters: ''
 
 jobs:
 - job: Run_SDL
@@ -33,13 +34,6 @@ jobs:
   steps:
   - checkout: self
     clean: true
-  - powershell: eng\common\build.ps1
-      -configuration Release
-      -restore
-      -prepareMachine
-      -ci
-      /p:OfficialBuildId=$(BUILD.BUILDNUMBER)
-    displayName: Windows Build / Publish
   - task: NuGetToolInstaller@1
     displayName: 'Install NuGet.exe'
   - task: NuGetCommand@2
@@ -70,5 +64,6 @@ jobs:
       -TsaCodebaseName ${{ parameters.Tsa.CodebaseName }}
       -TsaPublish ${{ parameters.Tsa.Publish }}
       -LoggerLevel ${{ parameters.Guardian.LoggerLevel }}
+      ${{ parameters.additionalParameters }}
     displayName: Execute SDL
     continueOnError: ${{ parameters.continueOnError }}

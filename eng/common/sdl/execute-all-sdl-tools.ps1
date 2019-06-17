@@ -42,7 +42,9 @@ if ($ArtifactToolsList) {
 }
 
 if ($SourceToolsList) {
+  Write-Host $SourceToolsList
   [string[]] $sourceToolsList = $SourceToolsList.split(",");
+  Write-Host $sourceToolsList
 }
 
  Write-Host "Params: $GuardianPackageName $NugetPackageDirectory  $GuardianCliLocation"

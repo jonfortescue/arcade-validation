@@ -30,7 +30,7 @@ jobs:
   dependsOn: ${{ parameters.dependsOn }}
   displayName: Run SDL tool
   variables:
-    - group: SDL_Eng_KeyVault
+    - group: DotNet-VSTS-Bot
   steps:
   - checkout: self
     clean: true

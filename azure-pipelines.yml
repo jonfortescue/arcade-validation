@@ -161,18 +161,17 @@ jobs:
 - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
   - template: /eng/common/templates/job/execute-sdl.yml
     parameters:
-      ArtifactsDirectory: $(Build.SourcesDirectory)
-      SourceToolsList: "policheck,credscan"
-      Tsa:
-        Publish: $True
-        InstanceURL: "https://devdiv.visualstudio.com/"
-        ProjectName: "DEVDIV"
-        NotificationEmail: "subal@microsoft.com"
-        CodebaseAdmin: "REDMOND\\subal"
-        BugAreaPath: "DevDiv\\NET\\NET Core "
-        IterationPath: "DevDiv"
-        RepositoryName: "Arcade"
-        CodebaseName: "Arcade"
+      additionalParameters: ' -ArtifactsDirectory $(Build.SourcesDirectory) 
+      -SourceToolsList "policheck,credscan"
+      -TsaInstanceURL "https://devdiv.visualstudio.com/"
+      -TsaProjectName "DEVDIV"
+      -TsaNotificationEmail "subal@microsoft.com"
+      -TsaCodebaseAdmin "REDMOND\\subal"
+      -TsaBugAreaPath "DevDiv\\NET\\NET Core "
+      -TsaIterationPath "DevDiv"
+      -TsaRepositoryName "Arcade"
+      -TsaCodebaseName "Arcade"
+      -TsaPublish $True'
 
 
 - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'master')) }}:

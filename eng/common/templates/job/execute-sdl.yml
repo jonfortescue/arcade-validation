@@ -14,10 +14,9 @@ jobs:
   - checkout: self
     clean: true
   - task: DownloadBuildArtifacts@0
-    displayName: Download Blob Artifacts
+    displayName: Download Build Artifacts
     inputs:
       buildType: current
-      artifactName: "*"
   - task: NuGetToolInstaller@1
     displayName: 'Install NuGet.exe'
   - task: NuGetCommand@2

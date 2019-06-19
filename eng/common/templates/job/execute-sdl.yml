@@ -17,7 +17,7 @@ jobs:
     displayName: Download Blob Artifacts
     inputs:
       buildType: current
-      artifactName: BlobArtifacts
+      artifactName: "*"
   - task: NuGetToolInstaller@1
     displayName: 'Install NuGet.exe'
   - task: NuGetCommand@2

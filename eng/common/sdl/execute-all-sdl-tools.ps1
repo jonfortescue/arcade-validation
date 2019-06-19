@@ -1,5 +1,3 @@
-. $env:BUILD_SOURCESDIRECTORY\eng\common\tools.ps1
-
 Param(
   [string] $GuardianPackageName,                          # Required: the name of guardian CLI pacakge (not needed if GuardianCliLocation is specified)
   [string] $NugetPackageDirectory,                        # Required: directory where NuGet packages are installed (not needed if GuardianCliLocation is specified)

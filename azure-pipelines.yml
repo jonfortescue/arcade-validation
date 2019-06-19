@@ -161,7 +161,8 @@ jobs:
 - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
   - template: /eng/common/templates/job/execute-sdl.yml
     parameters:
-      additionalParameters: ' -SourceToolsList @("policheck","credscan")
+      additionalParameters: ' -ArtifactsDirectory $(Build.SourcesDirectory) 
+      -SourceToolsList @("policheck","credscan")
       -TsaInstanceURL "https://devdiv.visualstudio.com/"
       -TsaProjectName "DEVDIV"
       -TsaNotificationEmail "subal@microsoft.com"

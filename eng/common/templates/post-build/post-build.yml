@@ -43,7 +43,7 @@ stages:
           displayName: Download Blob Artifacts
           inputs:
             buildType: current
-            artifactName: **
+            artifactName: "*"
 
         - task: PowerShell@2
           displayName: Validate

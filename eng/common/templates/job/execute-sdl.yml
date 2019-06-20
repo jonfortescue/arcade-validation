@@ -17,6 +17,8 @@ jobs:
     displayName: Download Build Artifacts
     inputs:
       buildType: current
+      downloadType: specific files
+      matchingPattern: "**"
   - task: NuGetToolInstaller@1
     displayName: 'Install NuGet.exe'
   - task: NuGetCommand@2

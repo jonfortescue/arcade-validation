@@ -19,6 +19,7 @@ jobs:
       buildType: current
       downloadType: specific files
       matchingPattern: "**"
+      downloadPath: '$(System.ArtifactsDirectory)'
   - task: NuGetToolInstaller@1
     displayName: 'Install NuGet.exe'
   - task: NuGetCommand@2

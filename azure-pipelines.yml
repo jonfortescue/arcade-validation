@@ -191,8 +191,7 @@ stages:
       # This is to enable SDL runs part of Post-Build Stage
       SDL:
         enable: true
-        params: ' -ArtifactsDirectory $(Build.SourcesDirectory)
-        -SourceToolsList @("policheck","credscan")
+        params: ' -SourceToolsList @("policheck","credscan")
         -TsaInstanceURL "https://devdiv.visualstudio.com/"
         -TsaProjectName "DEVDIV"
         -TsaNotificationEmail "subal@microsoft.com"

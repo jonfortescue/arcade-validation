@@ -192,6 +192,7 @@ stages:
       SDL:
         enable: true
         params: ' -SourceToolsList @("policheck","credscan")
+        -ArtifactToolsList @("binskim")
         -TsaInstanceURL "https://devdiv.visualstudio.com/"
         -TsaProjectName "DEVDIV"
         -TsaNotificationEmail "subal@microsoft.com"

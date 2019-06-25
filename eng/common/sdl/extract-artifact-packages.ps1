@@ -31,21 +31,13 @@ $ExtractPackage = {
     $zip.Entries | 
     Where-Object {$RelevantExtensions -contains [System.IO.Path]::GetExtension($_.Name)} |
       ForEach-Object {
-        $FileName = $_.FullName
           $Extension = [System.IO.Path]::GetExtension($_.Name)
           $FakeName = -Join((New-Guid), $Extension)
           $TargetFile = Join-Path -Path $ExtractPath -ChildPath $FakeName 
 
-          # We ignore resource DLLs
-          if ($FileName.EndsWith(".resources.dll")) {
-            return
-          }
-
           [System.IO.Compression.ZipFileExtensions]::ExtractToFile($_, $TargetFile, $true)
         }
-
-        }
-  
+  }
   catch {
   
   }

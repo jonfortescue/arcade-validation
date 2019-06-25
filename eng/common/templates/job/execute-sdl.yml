@@ -23,7 +23,7 @@ jobs:
   - task: ExtractFiles@1
     inputs:
       archiveFilePatterns: $(Build.SourcesDirectory)\artifacts\*.nupkg
-      destinationFolder: $(Build.SourcesDirectory)\artifacts
+      destinationFolder: $(Build.SourcesDirectory)\dlls
       cleanDestinationFolder: false
   - task: NuGetToolInstaller@1
     displayName: 'Install NuGet.exe'

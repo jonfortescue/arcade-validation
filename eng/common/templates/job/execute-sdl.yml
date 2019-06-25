@@ -20,6 +20,11 @@ jobs:
       downloadType: specific files
       matchingPattern: "**"
       downloadPath: $(Build.SourcesDirectory)\artifacts
+  - task: ExtractFiles@1
+    inputs:
+      archiveFilePatterns: $(Build.SourcesDirectory)\artifacts\*.nupkg
+      destinationFolder: $(Build.SourcesDirectory)\artifacts
+      #cleanDestinationFolder: true
   - task: NuGetToolInstaller@1
     displayName: 'Install NuGet.exe'
   - task: NuGetCommand@2

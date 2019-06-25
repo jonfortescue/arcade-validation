@@ -24,7 +24,7 @@ jobs:
     inputs:
       archiveFilePatterns: $(Build.SourcesDirectory)\artifacts\*.nupkg
       destinationFolder: $(Build.SourcesDirectory)\artifacts
-      #cleanDestinationFolder: true
+      cleanDestinationFolder: false
   - task: NuGetToolInstaller@1
     displayName: 'Install NuGet.exe'
   - task: NuGetCommand@2

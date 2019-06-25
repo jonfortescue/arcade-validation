@@ -22,7 +22,7 @@ jobs:
       downloadPath: $(Build.SourcesDirectory)\artifacts
   - task: ExtractFiles@1
     inputs:
-      archiveFilePatterns: $(Build.SourcesDirectory)\artifacts\BlobArtifacts\Validation.1.0.0-prerelease.19325.2.symbols.nupkg
+      archiveFilePatterns: $(Build.SourcesDirectory)\artifacts\BlobArtifacts\Validation*.nupkg
       destinationFolder: $(Build.SourcesDirectory)\artifacts\BlobArtifacts
       cleanDestinationFolder: false
   - task: NuGetToolInstaller@1
